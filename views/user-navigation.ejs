@@ -1,0 +1,36 @@
+<nav id="user_nav" class="navbar">
+  <!-- <script>
+  $(document).ready(function(){
+            var email;
+            $("#submit").click(function(){
+                email = "johndoe@unknown.com";
+                // Basic jQuery RESTFul API call
+                $.post("http://localhost:8000/login", {
+                    email: email
+                }, function(data) {
+                    // check the returned data, will return 'done' when completed
+                    if(data==='done') {
+                        // redirect to admin page
+                        window.location.href="/admin";
+                    }
+                });
+            });
+        });
+      </script> -->
+  <ul>
+    <li>
+    <% if(typeof data == 'undefined' || data.user == null){ %>
+            <form action="/login" method="POST">
+                <input class="button-link nav-item nav-link" type="submit" value="Login">
+            </form>
+        <%}else{%>
+            <form action="/logout" method="POST">
+                <input class="button-link nav-item nav-link" type="submit" value="Logout">
+            </form>
+        <% } %>
+        
+    </li>
+    <li><a href="myitems">Saved for later</a></li>
+    <li><a href="#">Cart</a></li>
+  </ul>
+</nav>

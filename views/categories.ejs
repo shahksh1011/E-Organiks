@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Organic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+
+<body>
+
+  <% include header.ejs %>
+  <% include user-navigation.ejs %>
+  <% include site-navigation.ejs %>
+
+<div class="content">
+  <h3><a href = "/" class="a-side_nav">Home</a> > <a href="/categories" class="a-side_nav">Categories</a></h3>
+  <ul class="ul-type-none">
+      <% for(var i=0; i<data.categories.length; i++){%>
+      <li class="nav-item"><%= data.categories[i] %>
+          <ul>
+              <% for(var j=0; j<data.items.length; j++){
+                  if(data.items[j].catalogCategory == data.categories[i]){ %>
+                  <li class="nav-item"><a class="nav-link" href="/categories/item/<%= data.items[j].itemCode%>"><%= data.items[j].itemName %></a></li>
+              <% } } %>
+          </ul>
+      </li>
+      <% } %>
+          
+  </ul>
+</div>
+
+  <% include footer.ejs %>
+
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Organic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+
+<body>
+
+  <% include header.ejs %>
+  <% include user-navigation.ejs %>
+  <% include site-navigation.ejs %>
+
+<div class="content">
+  <h3>Cart</h3>
+
+
+  <% if(data.userData == null) { %>
+    <h1> Please Sign In</h1>
+  <% } else{ %>
+
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Rating</th>
+      <th>Used It?</th>
+
+      <th>Action-Update</th>
+      <th>Action-Delete</th>
+    </tr>
+
+    <% for(var i=0;i<data.userData._userItem.length;i++){ %>
+      <tr>
+        <td><%= data.userData._userItem[i]._itemName %></td>
+        <td><%= data.userData._userItem[i]._rating %></td>
+        <td><%= data.userData._userItem[i]._usedIt %></td>
+
+        <td><a href="/categories/item/update/<%=data.userData._userItem[i]._itemCode%>" class="button a-button">
+            Update
+          </a>
+
+        </td>
+
+
+        <td>
+          <a href = "/categories/item/delete/<%=data.userData._userItem[i]._itemCode%>" class="button a-button">
+            Delete
+          </a>
+          <!-- <form action="/delete" id="delete" method="post">
+          <input name="itemCode" value = "<%= data.userData._userItem[i]._itemCode%>" class="hiddenInput">
+          <input type=button value="Delete">
+          </form> -->
+          <!-- <a href="#" class="button a-button"> -->
+
+          <!-- </a> -->
+        </td>
+
+      </tr>
+    <% }} %>
+
+
+
+
+  </table>
+
+</div>
+
+  <% include footer.ejs %>
+
+
+</body>
+
+</html>

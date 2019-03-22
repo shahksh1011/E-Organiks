@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Organic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+
+<body>
+
+  <% include header.ejs %>
+  <% include user-navigation.ejs %>
+  <% include site-navigation.ejs %>
+
+  <div class="content">
+    <h3><a href = "/" class="a-side_nav">Home</a> > <a href="/categories" class="a-side_nav">Categories > </a><%= data.item.catalogCategory%> > <%= data.item.itemName%></h3>
+
+      <div class="padding-h2">
+        <!-- <img class="item-image" src="assets/images/rice.jpg" alt="logo"> -->
+        <img src="<%= data.item.imageURL%>" alt="<%= data.item.itemName%>" class="item-image">
+        <h2><%= data.item.itemName%></h2>
+        <div class="rating">
+          <% for(var i=0; i<data.item.rating; i++){%>
+          <span class="star-colored"> &#9733;</span>
+          <% } %>
+          <% for(var i=0; i<5-data.item.rating; i++){%>
+          <span class="star"> &#9734;</span>
+          <% } %>
+
+          <!-- <span class="star-colored">&#9733;</span>
+          <span class="star-colored">&#9733;</span>
+          <span class="star">&#9734;</span> -->
+        </div>
+        <div class="button"><a href="/">Add to cart</a></div>
+        <div class="button"><a href="/categories/item/add/<%=data.item.itemCode%>">Save for later</a></div>
+      </div>
+
+    <br>
+    <br>
+    <br>
+
+
+    <p class="full-width"><%= data.item.description%></p>
+
+
+  </div>
+    <% include footer.ejs %>
+
+
+
+</body>
+
+</html>

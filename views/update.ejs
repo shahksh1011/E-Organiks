@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Organic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+
+<body>
+
+  <% include header.ejs %>
+  <% include user-navigation.ejs %>
+  <% include site-navigation.ejs %>
+
+  <div class="content">
+    <h3><a href = "/" class="a-side_nav">Home</a> > <a href="/categories" class="a-side_nav">Categories > </a><%= data.item.catalogCategory%> > <%= data.item.itemName%></h3>
+
+      <div class="padding-h2">
+        <form method="post" action="/myItems" id="ragteEdit">
+        <input name="itemCode" value = "<%= data.item.itemCode%>" class="hiddenInput"">
+        <!-- <img class="item-image" src="assets/images/rice.jpg" alt="logo"> -->
+        <img src="<%= data.item.imageURL%>" alt="<%= data.item.itemName%>" class="item-image">
+        <h2><%= data.item.itemName%></h2>
+        <div class="rating">
+
+          <h4> Rating </h4>
+          <select name="ratingUser" form="ragteEdit">
+            <% for(var i=1; i<6; i++){%>
+            <option value=<%= i %>
+              <% if(i == data.item.rating){%> selected = "selected" <%}%>
+              > <%= i %> </option>
+            <% } %>
+
+        </select>
+        <br>
+        <h5> Used It</h5>
+        <select name="usedIt" form="ragteEdit">
+          <option value="Yes"
+            <% if(data.item.usedIt == 'Yes'){ %> selected="selected" <%}%>>
+            Yes
+          </option>
+          <option value="No" <% if(data.item.usedIt == 'No'){%> selected="selected"<%}%>> No</option>
+
+
+      </select>
+
+        </div>
+
+        <!-- <div class="button"><a href="/myitems">Update</a></div> -->
+        <input type="submit" name="update" value = "update">
+        </form>
+        <!-- <div class="button"><a href="/myitems">Save for later</a></div> -->
+      </div>
+
+    <br>
+    <br>
+    <br>
+
+
+    <p class="full-width"><%= data.item.description%></p>
+
+
+  </div>
+    <% include footer.ejs %>
+
+
+
+</body>
+
+</html>
